@@ -1,0 +1,1605 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>實用文章分享｜精選效率、健康與生活靈感</title>
+  <meta name="description" content="實用文章分享：收錄時間管理、健康話題、生活智慧與實用知識的精選好文。">
+
+  <!-- 載入繁體中文無襯線字體 Noto Sans TC -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- 載入 Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // 設定 Tailwind 預設字體與柔和色票
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Noto Sans TC"', '-apple-system', 'BlinkMacSystemFont', '"PingFang TC"', '"Microsoft JhengHei"', 'sans-serif'],
+          },
+          colors: {
+            paper: '#FAF9F6',
+            ink: '#1C1917',
+          }
+        }
+      }
+    };
+  </script>
+</head>
+
+<body class="bg-paper text-stone-800 font-sans antialiased selection:bg-amber-200/70 selection:text-stone-900 min-h-screen flex flex-col overflow-x-hidden">
+
+  <!-- ==================== 頂部導覽與頁首區 ==================== -->
+  <header class="bg-paper/90 backdrop-blur-md border-b border-stone-200/80 sticky top-0 z-30">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+      <!-- 網站品牌識別 -->
+      <a href="#" id="brandHomeLink" class="flex items-center gap-2.5 group focus:outline-none">
+        <span class="w-9 h-9 rounded-xl bg-stone-800 text-paper flex items-center justify-center shadow-sm group-hover:bg-stone-700 transition-colors">
+          <!-- 書本圖示 SVG -->
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+          </svg>
+        </span>
+        <span class="font-bold text-lg tracking-tight text-stone-900">實用文章分享</span>
+      </a>
+
+      <!-- 右上角低調實用的「新增文章助手」按鈕 -->
+      <button
+        id="openAssistantBtn"
+        type="button"
+        class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-sm font-medium text-stone-700 bg-white border border-stone-200/90 shadow-sm hover:bg-stone-50 hover:border-stone-300 hover:text-stone-900 active:scale-[0.98] transition-all"
+      >
+        <svg class="w-4 h-4 text-stone-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+        </svg>
+        <span>新增文章助手</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ==================== 頁首主視覺與搜尋列 ==================== -->
+  <section class="pt-10 pb-8 sm:pt-14 sm:pb-10 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-5xl mx-auto text-center">
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-stone-900 mb-3">
+        實用文章分享
+      </h1>
+      <p class="text-base sm:text-lg text-stone-500 max-w-2xl mx-auto leading-relaxed mb-7">
+        精選日常效率、身心保健與生活靈感，用簡單好執行的方法，把每一天過得更從容。
+      </p>
+
+      <!-- 即時搜尋列 -->
+      <div class="max-w-xl mx-auto relative">
+        <label for="searchInput" class="sr-only">搜尋文章標題、摘要、標籤或內文</label>
+        <div class="pointer-events-none absolute inset-y-0 left-0 pl-4 flex items-center text-stone-400">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+          </svg>
+        </div>
+        <input
+          id="searchInput"
+          type="text"
+          placeholder="搜尋文章標題、關鍵字、標籤或內文..."
+          autocomplete="off"
+          class="w-full pl-11 pr-11 py-3.5 bg-white border border-stone-200 rounded-2xl text-stone-800 placeholder-stone-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-stone-800/15 focus:border-stone-400 transition-all text-base"
+        >
+        <button
+          id="clearSearchBtn"
+          type="button"
+          aria-label="清除搜尋文字"
+          class="hidden absolute inset-y-0 right-0 pr-3.5 flex items-center text-stone-400 hover:text-stone-700 transition-colors"
+        >
+          <span class="p-1.5 rounded-full hover:bg-stone-100">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 主內容區：分類導覽 + 文章卡片網格 ==================== -->
+  <main class="flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+
+    <!-- 分類導覽列 -->
+    <nav aria-label="文章分類" class="mb-8">
+      <div id="categoryNav" class="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5">
+        <!-- 由 JavaScript 動態渲染分類按鈕與篇數 -->
+      </div>
+    </nav>
+
+    <!-- 預覽模式提示條（僅在使用者透過助手加入預覽文章時出現） -->
+    <div id="previewBanner" class="hidden mb-6 p-4 rounded-2xl bg-amber-50 border border-amber-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-sm text-amber-900">
+      <div class="flex items-start sm:items-center gap-2.5">
+        <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-amber-200/80 text-amber-900 font-bold text-xs shrink-0 mt-0.5 sm:mt-0">!</span>
+        <p>目前畫面包含<strong>暫時預覽文章</strong>，重新整理頁面後將會消失。確認排版無誤後，請使用「新增文章助手」複製程式碼並貼到 GitHub。</p>
+      </div>
+      <button
+        id="clearPreviewBtn"
+        type="button"
+        class="self-end sm:self-auto shrink-0 px-3 py-1.5 rounded-xl bg-white border border-amber-300 text-amber-900 hover:bg-amber-100/70 font-medium transition-colors"
+      >
+        清除預覽文章
+      </button>
+    </div>
+
+    <!-- 篩選狀態摘要列 -->
+    <div class="flex flex-wrap items-center justify-between gap-2 mb-5 text-sm text-stone-500">
+      <p id="resultSummary">載入文章中...</p>
+      <button
+        id="resetFilterBtn"
+        type="button"
+        class="hidden text-stone-700 hover:text-stone-900 underline underline-offset-4 font-medium"
+      >
+        顯示全部文章
+      </button>
+    </div>
+
+    <!-- 文章列表卡片網格 -->
+    <div id="articleGrid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- 由 JavaScript 動態渲染文章卡片 -->
+    </div>
+
+    <!-- 查無結果空狀態 -->
+    <div id="emptyState" class="hidden text-center py-16 px-6 bg-white rounded-3xl border border-stone-200/80 shadow-sm">
+      <div class="w-14 h-14 mx-auto mb-4 rounded-2xl bg-stone-100 text-stone-400 flex items-center justify-center">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m5.231 13.481L15 17.25m-4.5-15H5.625c-.621 0-1.125.504-1.125 1.125v16.5c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9zm3.75 11.625a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
+        </svg>
+      </div>
+      <h2 class="text-lg font-semibold text-stone-800 mb-1.5">找不到符合條件的文章</h2>
+      <p class="text-stone-500 text-sm mb-5">試試看更換搜尋關鍵字，或是切換回全部文章瀏覽。</p>
+      <button
+        id="emptyResetBtn"
+        type="button"
+        class="px-5 py-2.5 rounded-xl bg-stone-800 text-white text-sm font-medium hover:bg-stone-700 transition-colors"
+      >
+        查看全部文章
+      </button>
+    </div>
+  </main>
+
+  <!-- ==================== 頁尾區 ==================== -->
+  <footer class="border-t border-stone-200/80 bg-white/60 py-8 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-stone-500">
+      <p>© <span id="footerYear"></span> 實用文章分享・用心整理每一篇值得收藏的好內容</p>
+      <p class="text-xs text-stone-400">靜態單頁架構・支援 GitHub Pages 快速發布</p>
+    </div>
+  </footer>
+
+  <!-- ==================== 文章閱讀視窗 (Modal) ==================== -->
+  <div
+    id="readerModal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="readerTitle"
+    class="hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-5 bg-stone-900/50 backdrop-blur-sm"
+  >
+    <div
+      id="readerDialog"
+      class="relative w-full max-w-3xl max-h-[92vh] bg-[#FFFEFC] rounded-3xl shadow-2xl border border-stone-200 flex flex-col overflow-hidden"
+    >
+      <!-- 閱讀器固定頂部工具列 -->
+      <div class="flex items-center justify-between gap-2 px-4 sm:px-7 py-3.5 border-b border-stone-200/80 bg-[#FFFEFC]/95 shrink-0">
+        <div class="flex items-center gap-2 min-w-0">
+          <span id="readerCategoryBadge" class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium border shrink-0"></span>
+          <span id="readerPreviewTag" class="hidden inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-800 shrink-0">預覽中</span>
+        </div>
+
+        <div class="flex items-center gap-1.5 sm:gap-2">
+          <!-- 字體大小切換（標準 / 放大） -->
+          <div class="inline-flex items-center bg-stone-100 rounded-xl p-1" role="group" aria-label="字體大小切換">
+            <button
+              id="fontNormalBtn"
+              type="button"
+              class="px-2.5 py-1 rounded-lg text-xs font-medium transition-all bg-white text-stone-900 shadow-sm"
+            >
+              標準
+            </button>
+            <button
+              id="fontLargeBtn"
+              type="button"
+              class="px-2.5 py-1 rounded-lg text-xs font-medium transition-all text-stone-500 hover:text-stone-800"
+            >
+              放大
+            </button>
+          </div>
+
+          <!-- 複製文章連結按鈕 -->
+          <button
+            id="copyArticleLinkBtn"
+            type="button"
+            class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs sm:text-sm font-medium text-stone-700 bg-stone-100 hover:bg-stone-200/80 transition-colors"
+            title="複製這篇文章的專屬連結"
+          >
+            <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
+            </svg>
+            <span class="hidden sm:inline">複製文章連結</span>
+          </button>
+
+          <!-- 關閉閱讀視窗按鈕 -->
+          <button
+            id="closeReaderBtn"
+            type="button"
+            aria-label="關閉文章視窗"
+            class="p-2 rounded-xl text-stone-500 hover:text-stone-900 hover:bg-stone-100 transition-colors"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- 閱讀器捲動內容區 -->
+      <article id="readerScrollArea" class="flex-1 overflow-y-auto px-5 sm:px-10 py-7 sm:py-9">
+        <!-- 文章標頭資訊 -->
+        <header class="mb-7 pb-6 border-b border-stone-200/80">
+          <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs sm:text-sm text-stone-500 mb-3">
+            <span id="readerDate" class="inline-flex items-center gap-1.5"></span>
+            <span aria-hidden="true" class="text-stone-300">•</span>
+            <span id="readerReadTime" class="inline-flex items-center gap-1.5"></span>
+          </div>
+          <h2 id="readerTitle" class="text-2xl sm:text-3xl font-bold text-stone-900 leading-snug tracking-tight mb-4"></h2>
+          <p id="readerSummary" class="text-stone-600 text-base leading-relaxed bg-stone-50/90 border border-stone-200/70 rounded-2xl p-4"></p>
+          <div id="readerTags" class="flex flex-wrap gap-2 mt-4"></div>
+        </header>
+
+        <!-- Markdown 轉換後的正文容器 -->
+        <div id="readerContent" class="text-stone-700 text-base sm:text-[17px] leading-8 space-y-5">
+          <!-- 動態渲染 -->
+        </div>
+
+        <!-- 文章底部操作列 -->
+        <div class="mt-10 pt-6 border-t border-stone-200/80 flex flex-wrap items-center justify-between gap-3">
+          <button
+            id="readerBottomCopyBtn"
+            type="button"
+            class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-stone-100 text-stone-700 hover:bg-stone-200/80 text-sm font-medium transition-colors"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 100 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186l9.566-5.314m-9.566 7.5l9.566 5.314m0 0a2.25 2.25 0 103.935 2.186 2.25 2.25 0 00-3.935-2.186zm0-12.814a2.25 2.25 0 103.933-2.185 2.25 2.25 0 00-3.933 2.185z" />
+            </svg>
+            <span>分享這篇文章</span>
+          </button>
+          <button
+            id="readerBottomCloseBtn"
+            type="button"
+            class="px-5 py-2.5 rounded-xl bg-stone-800 text-white hover:bg-stone-700 text-sm font-medium transition-colors"
+          >
+            返回文章列表
+          </button>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <!-- ==================== 新增文章助手視窗 (Modal) ==================== -->
+  <div
+    id="assistantModal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="assistantTitle"
+    class="hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-5 bg-stone-900/50 backdrop-blur-sm"
+  >
+    <div class="relative w-full max-w-2xl max-h-[92vh] bg-white rounded-3xl shadow-2xl border border-stone-200 flex flex-col overflow-hidden">
+      <!-- 助手頂部標題列 -->
+      <div class="flex items-center justify-between gap-3 px-5 sm:px-7 py-4 border-b border-stone-200 bg-paper shrink-0">
+        <div>
+          <h2 id="assistantTitle" class="text-lg sm:text-xl font-bold text-stone-900">新增文章助手</h2>
+          <p class="text-xs sm:text-sm text-stone-500 mt-0.5">填寫內容後可立即預覽，或一鍵產生 GitHub 專用的文章程式碼</p>
+        </div>
+        <button
+          id="closeAssistantBtn"
+          type="button"
+          aria-label="關閉新增文章助手"
+          class="p-2 rounded-xl text-stone-500 hover:text-stone-900 hover:bg-stone-200/70 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- 助手表單捲動區 -->
+      <div class="flex-1 overflow-y-auto px-5 sm:px-7 py-6 space-y-5">
+        <form id="assistantForm" class="space-y-4" novalidate>
+          <!-- 驗證錯誤訊息區（取代 alert） -->
+          <div id="formErrorBox" class="hidden p-3.5 rounded-2xl bg-rose-50 border border-rose-200 text-rose-800 text-sm"></div>
+
+          <!-- 文章標題 -->
+          <div>
+            <label for="inputTitle" class="block text-sm font-medium text-stone-700 mb-1.5">
+              文章標題 <span class="text-rose-500">*</span>
+            </label>
+            <input
+              id="inputTitle"
+              type="text"
+              placeholder="例如：每天多出 1 小時的晨間習慣設計"
+              class="w-full px-4 py-2.5 rounded-xl border border-stone-200 text-stone-800 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-stone-800/15 focus:border-stone-400 transition-all"
+            >
+          </div>
+
+          <!-- 分類與日期並排 -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="inputCategory" class="block text-sm font-medium text-stone-700 mb-1.5">
+                文章分類 <span class="text-rose-500">*</span>
+              </label>
+              <select
+                id="inputCategory"
+                class="w-full px-4 py-2.5 rounded-xl border border-stone-200 bg-white text-stone-800 focus:outline-none focus:ring-2 focus:ring-stone-800/15 focus:border-stone-400 transition-all"
+              >
+                <option value="時間管理">時間管理</option>
+                <option value="健康話題">健康話題</option>
+                <option value="生活智慧">生活智慧</option>
+                <option value="實用知識">實用知識</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="inputDate" class="block text-sm font-medium text-stone-700 mb-1.5">
+                發布日期 <span class="text-rose-500">*</span>
+              </label>
+              <input
+                id="inputDate"
+                type="date"
+                class="w-full px-4 py-2.5 rounded-xl border border-stone-200 text-stone-800 focus:outline-none focus:ring-2 focus:ring-stone-800/15 focus:border-stone-400 transition-all"
+              >
+            </div>
+          </div>
+
+          <!-- 簡短摘要 -->
+          <div>
+            <label for="inputSummary" class="block text-sm font-medium text-stone-700 mb-1.5">
+              簡短摘要 <span class="text-rose-500">*</span>
+            </label>
+            <textarea
+              id="inputSummary"
+              rows="2"
+              placeholder="用一兩句話介紹這篇文章的重點，會顯示在首頁卡片上..."
+              class="w-full px-4 py-2.5 rounded-xl border border-stone-200 text-stone-800 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-stone-800/15 focus:border-stone-400 transition-all resize-y"
+            ></textarea>
+          </div>
+
+          <!-- 標籤 -->
+          <div>
+            <label for="inputTags" class="block text-sm font-medium text-stone-700 mb-1.5">
+              標籤（以逗號分隔）
+            </label>
+            <input
+              id="inputTags"
+              type="text"
+              placeholder="例如：效率提升, 好習慣, 日常練習"
+              class="w-full px-4 py-2.5 rounded-xl border border-stone-200 text-stone-800 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-stone-800/15 focus:border-stone-400 transition-all"
+            >
+          </div>
+
+          <!-- 文章內容 + 簡易 Markdown 語法提示 -->
+          <div>
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+              <label for="inputContent" class="block text-sm font-medium text-stone-700">
+                文章內容 <span class="text-rose-500">*</span>
+              </label>
+              <span class="text-xs text-stone-400">支援簡易 Markdown 與空行分段</span>
+            </div>
+
+            <!-- 語法提示小卡 -->
+            <div class="mb-2 px-3.5 py-2.5 rounded-xl bg-stone-50 border border-stone-200/80 text-xs text-stone-600 flex flex-wrap gap-x-3 gap-y-1.5 leading-relaxed">
+              <span><code class="px-1.5 py-0.5 rounded bg-white border border-stone-200 text-stone-800">## 小標題</code></span>
+              <span><code class="px-1.5 py-0.5 rounded bg-white border border-stone-200 text-stone-800">### 次標題</code></span>
+              <span><code class="px-1.5 py-0.5 rounded bg-white border border-stone-200 text-stone-800">**粗體文字**</code></span>
+              <span><code class="px-1.5 py-0.5 rounded bg-white border border-stone-200 text-stone-800">- 項目符號</code></span>
+              <span><code class="px-1.5 py-0.5 rounded bg-white border border-stone-200 text-stone-800">1. 編號清單</code></span>
+              <span><code class="px-1.5 py-0.5 rounded bg-white border border-stone-200 text-stone-800">&gt; 重點引言</code></span>
+            </div>
+
+            <textarea
+              id="inputContent"
+              rows="8"
+              placeholder="在這裡輸入文章正文，空一行即可自然分段..."
+              class="w-full px-4 py-3 rounded-xl border border-stone-200 text-stone-800 placeholder-stone-400 leading-relaxed focus:outline-none focus:ring-2 focus:ring-stone-800/15 focus:border-stone-400 transition-all resize-y"
+            ></textarea>
+          </div>
+
+          <!-- 雙操作按鈕 -->
+          <div class="pt-2 flex flex-col sm:flex-row gap-3">
+            <button
+              id="previewArticleBtn"
+              type="button"
+              class="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl border border-stone-300 bg-white text-stone-800 font-medium hover:bg-stone-50 active:scale-[0.99] transition-all"
+            >
+              <svg class="w-4 h-4 text-stone-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              <span>即時預覽效果</span>
+            </button>
+
+            <button
+              id="generateCodeBtn"
+              type="button"
+              class="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-stone-900 text-white font-medium hover:bg-stone-800 active:scale-[0.99] shadow-sm transition-all"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
+              </svg>
+              <span>產生並複製 GitHub 程式碼</span>
+            </button>
+          </div>
+        </form>
+
+        <!-- 產生的程式碼區塊（點擊產生後顯示） -->
+        <div id="generatedCodeSection" class="hidden pt-4 border-t border-stone-200 space-y-3">
+          <div class="p-3.5 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-900 text-sm flex items-start gap-2.5">
+            <svg class="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <p>
+              <strong>已自動產生並複製程式碼！</strong>請開啟 GitHub 上的 <code class="px-1.5 py-0.5 rounded bg-emerald-100 font-semibold">index.html</code>，將下方程式碼直接貼到 <code class="px-1.5 py-0.5 rounded bg-emerald-100 font-semibold">ARTICLES</code> 陣列的最上方（<code class="px-1 py-0.5 rounded bg-emerald-100">[</code> 的下一行）並儲存變更即可發布。
+            </p>
+          </div>
+
+          <div class="relative rounded-2xl bg-stone-900 text-stone-100 overflow-hidden">
+            <div class="flex items-center justify-between px-4 py-2.5 bg-stone-800/90 border-b border-stone-700/80 text-xs text-stone-300">
+              <span>JavaScript 文章物件程式碼</span>
+              <button
+                id="copyGeneratedAgainBtn"
+                type="button"
+                class="px-2.5 py-1 rounded-lg bg-stone-700 hover:bg-stone-600 text-white font-medium transition-colors"
+              >
+                再次複製
+              </button>
+            </div>
+            <pre class="p-4 text-xs sm:text-sm overflow-x-auto leading-relaxed"><code id="generatedCodeOutput"></code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 輕量提示訊息 (Toast，取代 alert) ==================== -->
+  <div
+    id="toastContainer"
+    aria-live="polite"
+    class="pointer-events-none fixed bottom-6 left-1/2 -translate-x-1/2 z-[60] w-max max-w-[90vw] transition-all duration-300 opacity-0 translate-y-3"
+  >
+    <div id="toastMessage" class="px-5 py-3 rounded-2xl bg-stone-900 text-white text-sm font-medium shadow-lg flex items-center gap-2"></div>
+  </div>
+
+  <!-- ==================== 應用程式腳本 ==================== -->
+  <script>
+    // =========================================================================
+    // ====== 在這裡新增你的文章 ======
+    // 使用方式：
+    // 1. 直接複製下方任一篇 { ... }, 的格式，貼在陣列最上方修改即可。
+    // 2. 或使用網頁右上角「＋ 新增文章助手」，填完後一鍵複製並貼在這裡！
+    // 注意：每篇文章的 id 請保持不重複（例如依序遞增 5, 6, 7...）。
+    // =========================================================================
+    const ARTICLES = [
+      {
+        id: 4,
+        title: "告別待辦清單焦慮：用「三件事法則」拿回每天的主導權",
+        category: "時間管理",
+        date: "2026-11-24",
+        summary: "寫了滿滿二十項待辦事項，下班時卻只打勾了三件，反而越來越挫折？試試更符合大腦運作的「三件事法則」，讓每天的努力都花在刀口上。",
+        tags: ["時間管理", "待辦清單", "專注力", "工作效率"],
+        content: `很多人習慣在早上打開筆記本，把腦中想到的大小事全部列成一張長長的待辦清單。看似很有條理，但往往到了下午三點，看到還有十幾項沒完成，心裡只剩下滿滿的焦慮與無力感。
+
+問題不在於你不够努力，而是**過長的清單會耗盡大腦的決策能量**。當每一件事看起來都一樣重要時，我們往往會下意識挑最輕鬆、最不重要的瑣事來做，藉此獲得短暫的打勾快感。
+
+## 什麼是「三件事法則」？
+
+「三件事法則」的核心非常簡單：每天開工前，問自己一個問題——**「如果今天結束前，我只能完成三件事就覺得這一天很值得，那會是哪三件？」**
+
+> 效率不是把所有事情都做完，而是確保最重要的事情先發生。
+
+這三件事不需要都是耗時一整天的大專案，但它們必須對你的工作進度、健康或生活品質有實質推動力。
+
+## 實作的三個具體步驟
+
+1. **先進行大腦清空**：把所有雜事依然寫在「備忘收件匣」裡，不要靠腦袋記，這樣大腦才能安心專注。
+2. **精選今日三大重點**：從備忘清單中，只挑出 **3 件**最關鍵的任務，抄寫在一張獨立便條紙或待辦清單最頂端。
+3. **為這三件事預約時段**：把這三項任務直接放進行事曆，特別是第一件最難的任務，建議安排在自己精神最好的黃金時段。
+
+### 如果三件事做完了怎麼辦？
+
+這就是這個方法最棒的地方！當你順利完成核心三件事後，你已經贏得了今天的主導權。剩下的時間無論你是去處理備忘清單裡的雜事、回覆信件，或是準時下班好好休息，都能**心安理得，不再有罪惡感**。
+
+## 避免踩雷的小提醒
+
+- **不要把大型專案寫成一件事**：把「完成年度企劃」拆解成「寫完企劃前三頁大綱」，大腦才不會因為太抽象而拖延。
+- **留一點緩衝空間**：每天總會有突發狀況，只鎖定三件事，能讓你面對臨時插單時依然游刃有餘。
+- **從明天早上開始練習**：先連續嘗試五天，你會驚訝地發現，自己實際推進的進度比以前列二十件事還要多得多。`
+      },
+      {
+        id: 3,
+        title: "久坐族必學的「微運動」習慣：每小時 2 分鐘改善肩頸與代謝",
+        category: "健康話題",
+        date: "2026-11-21",
+        summary: "即使下班有去健身房，白天連續久坐八小時仍會悄悄拖垮代謝與肩頸健康。善用零碎時間的「微運動」，在辦公室也能輕鬆重啟身體循環。",
+        tags: ["久坐族", "肩頸放鬆", "微運動", "日常保健"],
+        content: `現代人上班盯著電腦、通勤滑手機、回家追劇，一天坐著的時間動輒超過九小時。許多研究都指出，**長時間連續久坐會讓下肢血液循環變慢、核心肌群失能**，這也是為什麼到了下午，我們常覺得肩頸僵硬、腰部痠痛，甚至精神昏沉。
+
+好消息是，改善久坐傷害並不需要每次都換上運動服跑去健身房。近年運動醫學非常推崇**「微運動（Exercise Snacks）」**的概念：把活動拆成每次 1 到 3 分鐘的小片段，穿插在整天之中。
+
+## 為什麼每小時動 2 分鐘這麼有效？
+
+當肌肉長時間處於靜止狀態，體內負責分解血脂與穩定血糖的酵素活性會明顯下降。只要每隔 50 到 60 分鐘起身活動一下，就能重新喚醒大肌群，讓血液回流並舒緩脊椎壓力。
+
+> 最好的姿勢永遠是「下一個姿勢」。比起花大錢買昂貴座椅，定時起身活動才是最無可取代的保養。
+
+## 辦公室也能做的 3 個微運動
+
+### 1. 門框或牆面開胸伸展（30 秒）
+長期打字會讓胸大肌緊繃、肩膀內縮形成圓肩。站起來走到牆邊，單手前臂輕貼牆面、手肘略高於肩膀，身體慢慢往反方向輕轉，感受胸口自然打開，左右各維持 15 秒，呼吸保持順暢。
+
+### 2. 坐姿收下巴放鬆頸椎（30 秒）
+身體坐直、肩膀自然下沉，想像頭頂有一條線輕輕往上拉，然後將下巴水平往後收回（像擠出雙下巴的感覺），停留 5 秒後放鬆，重複 5 次。這個動作能有效減輕「烏龜頸」帶來的後頸壓力。
+
+### 3. 踮腳尖與微深蹲啟動下肢（60 秒）
+雙腳與肩同寬站立，扶著桌緣慢慢將腳跟墊高到最高點再緩慢放下，重複 15 下，能幫助小腿肌肉將血液打回心臟；接著做 10 下輕鬆的微深蹲（膝蓋不需過低，重心放臀部），瞬間讓精神清醒。
+
+## 如何讓微運動自然發生？
+
+- **綁定喝水習慣**：每次把水杯喝完，就順便起身去茶水間裝水，並在裝水等待時踮腳尖。
+- **善用自然中斷點**：每當開完一場會、寄出一封重要信件，或上完洗手間後，直接順手做 1 分鐘伸展。
+- **不求流汗，只求連貫**：微運動的目標是打斷久坐，動作輕鬆不造成負擔，才最容易天天堅持下去。`
+      },
+      {
+        id: 2,
+        title: "空間清爽、心就靜了：不費力的「一進一出」居家整理術",
+        category: "生活智慧",
+        date: "2026-11-18",
+        summary: "每次下定決心大掃除，過不到一個月家裡又恢復凌亂？其實你不需要花整個週末斷捨離，只要建立「一進一出」的微習慣，就能讓家自然維持清爽。",
+        tags: ["居家整理", "斷捨離", "極簡生活", "生活習慣"],
+        content: `你是不是也有過這樣的經驗：趁著連假咬牙整理了兩天，丟掉好幾大袋雜物，家裡亮晶晶的讓人心情大好；但不到三週，餐桌角落又開始堆起帳單、贈品與新買的小物，彷彿一切回到原點。
+
+環境會反彈，往往不是因為你懶得收拾，而是**物品進入家裡的速度，永遠大於離開的速度**。這時候，最輕鬆且最能長久維持的方法，就是實踐「一進一出」原則。
+
+## 什麼是「一進一出」整理術？
+
+規則直覺到不需要任何收納技巧：**每當有一件新物品進入家門，就同步挑選一件同類型的舊物品離開**（捐贈、轉送、回收或丟棄）。
+
+> 整理不是為了讓家裡空無一物，而是把有限的空間與注意力，留給現在真正喜歡且用得上的東西。
+
+這個方法能幫我們守住家裡的「總量上限」，同時在購買前多了一層溫柔的煞車：當你拿起一件特價衣服時，心裡會自然浮現「如果買了這件，回家要淘汰哪一件呢？」許多衝動消費就在這三秒內自動化解。
+
+## 最推薦先從這 3 個區域開始
+
+1. **衣櫃與鞋櫃**：買了一件新外套，就從衣櫃裡挑出一件超過兩年沒穿、版型不合或起毛球的舊外套整理出來。
+2. **廚房的馬克杯與環保袋**：這些是最容易透過贈品與伴手禮悄悄繁殖的物品。設定一個固定容量（例如杯子只留 6 個），多一個就送走一個。
+3. **書桌與玄關小物**：新的筆記本、保養品試用包或收據進來時，順手把已經寫完的本子或過期的試用包清掉。
+
+### 執行時的小小彈性
+
+- **先處理「明顯不需要」的物件**：一開始不必勉強自己割捨有紀念價值的物品，先從壞掉的傘、乾掉的原子筆、不再穿的鬆掉襪子下手，累積成就感。
+- **在家裡設一個「待送出紙箱」**：有時候當下還沒想好要怎麼處理舊物，可以先統一放進這個箱子，滿了再一次拿去捐贈或回收，減少整理時的心理阻力。
+
+當空間不再被視覺雜訊填滿，回到家那一刻，大腦也能真正切換到放鬆模式，這就是日常最踏實的小確幸。`
+      },
+      {
+        id: 1,
+        title: "看懂食品營養標示的 3 個關鍵細節，買東西不再踩雷",
+        category: "實用知識",
+        date: "2026-11-15",
+        summary: "包裝正面寫著「減糖」、「天然」、「高纖」就一定比較健康嗎？學會翻到背面看懂營養標示與成分表，30 秒就能做出更聰明的採買選擇。",
+        tags: ["營養標示", "健康採買", "生活常識", "飲食知識"],
+        content: `走進超商或賣場，架上琳瑯滿目的包裝食品總是印滿吸引人的標語：「無添加砂糖」、「健康穀物」、「低脂清爽」。然而，這些正面文案大多是行銷重點，真正決定這份食物適不適合你的資訊，其實藏在背面的**營養標示**與**成分表**裡。
+
+不需要背誦複雜的營養學公式，只要養成翻到背面看這 3 個細節的習慣，就能避開絕大多數的飲食地雷。
+
+## 細節一：先看「本包裝含幾份」，別被數字騙了
+
+這是最多人誤會的地方！營養標示通常有兩欄：「每一份量」與「每 100 公克／毫升」。
+
+舉例來說，一瓶飲料或一包餅乾上寫著「每一份量熱量 120 大卡」，看起來非常無害；但抬頭一看上面寫著**「本包裝含 4 份」**，如果你一個人一口氣吃完整包，實際吃進去的熱量就是 ` + `120 × 4 = 480 大卡` + `，糖分與鈉含量也全部要乘以 4！
+
+> 看熱量與糖分之前，第一眼永遠先確認「本包裝含幾份」，才能算對自己真正吃下肚的總量。
+
+## 細節二：成分表是照「重量由多到少」排列
+
+根據台灣食品法規，包裝上的「成分（原料）」必須依照**含量多寡由高到低依序排列**。這是一面超級誠實的照妖鏡：
+
+- **買燕麥奶或堅果飲時**：如果排在第一、第二位的是「水、砂糖」，而主原料燕麥或堅果排在很後面，代表你買到的其實偏向含糖飲料。
+- **買全麥吐司時**：真正比例高的全麥麵包，成分表第一位通常會寫著「全麥麵粉」，而不是「麵粉」排第一、全麥粉排在最後點綴。
+- **成分越短越單純**：如果一塊簡單的餅乾背後列了二十幾種念不出來的名詞，通常代表加工層度較高。
+
+## 細節三：留意隱藏的「鈉」與「精緻糖」
+
+1. **不鹹的食物也可能高鈉**：吐司、麥片、運動飲料、關東煮湯頭與拌麵醬包，吃起來不見得死鹹，但鈉含量往往相當驚人。成人每日建議鈉攝取量約為 **2400 毫克**（約 6 克鹽），如果一餐泡麵或微波便當就超過 1200 毫克，等於一餐就吃掉半天額度。
+2. **「無加糖」不等於「無糖」**：有些果乾或果汁雖然沒有額外加蔗糖，但水果本身濃縮後的果糖含量依然很高，還是要看營養標示中的「糖」克數來評估。
+
+### 實用的 10 秒採買檢查清單
+
+- 確認總份數，心算整包吃完的熱量與糖分。
+- 掃描成分表前三名，確認主原料是不是你原本想買的東西。
+- 同類商品拿兩包互相比較「每 100 公克」那一欄，因為基準相同，最容易一眼挑出更少負擔的好選擇！`
+      }
+    ];
+
+    // =========================================================================
+    // 應用程式核心設定與邏輯（一般新增文章時不需要修改以下程式碼）
+    // =========================================================================
+
+    // 四大分類設定與專屬柔和配色
+    const CATEGORIES = [
+      {
+        name: "全部文章",
+        badgeClass: "bg-stone-100 text-stone-700 border-stone-200",
+        dotClass: "bg-stone-500"
+      },
+      {
+        name: "時間管理",
+        badgeClass: "bg-sky-50 text-sky-700 border-sky-200/80",
+        dotClass: "bg-sky-500"
+      },
+      {
+        name: "健康話題",
+        badgeClass: "bg-emerald-50 text-emerald-700 border-emerald-200/80",
+        dotClass: "bg-emerald-500"
+      },
+      {
+        name: "生活智慧",
+        badgeClass: "bg-amber-50 text-amber-800 border-amber-200/80",
+        dotClass: "bg-amber-500"
+      },
+      {
+        name: "實用知識",
+        badgeClass: "bg-violet-50 text-violet-700 border-violet-200/80",
+        dotClass: "bg-violet-500"
+      }
+    ];
+
+    // 應用程式狀態管理
+    const appState = {
+      activeCategory: "全部文章",
+      searchQuery: "",
+      fontSize: "normal", // 'normal' | 'large'
+      currentArticleId: null,
+      previewArticles: [], // 暫存透過「新增文章助手」預覽的文章
+      toastTimer: null
+    };
+
+    // DOM 元素參照快取
+    const els = {
+      brandHomeLink: document.getElementById("brandHomeLink"),
+      searchInput: document.getElementById("searchInput"),
+      clearSearchBtn: document.getElementById("clearSearchBtn"),
+      categoryNav: document.getElementById("categoryNav"),
+      previewBanner: document.getElementById("previewBanner"),
+      clearPreviewBtn: document.getElementById("clearPreviewBtn"),
+      resultSummary: document.getElementById("resultSummary"),
+      resetFilterBtn: document.getElementById("resetFilterBtn"),
+      articleGrid: document.getElementById("articleGrid"),
+      emptyState: document.getElementById("emptyState"),
+      emptyResetBtn: document.getElementById("emptyResetBtn"),
+      footerYear: document.getElementById("footerYear"),
+
+      // 閱讀視窗元素
+      readerModal: document.getElementById("readerModal"),
+      readerScrollArea: document.getElementById("readerScrollArea"),
+      readerCategoryBadge: document.getElementById("readerCategoryBadge"),
+      readerPreviewTag: document.getElementById("readerPreviewTag"),
+      readerDate: document.getElementById("readerDate"),
+      readerReadTime: document.getElementById("readerReadTime"),
+      readerTitle: document.getElementById("readerTitle"),
+      readerSummary: document.getElementById("readerSummary"),
+      readerTags: document.getElementById("readerTags"),
+      readerContent: document.getElementById("readerContent"),
+      fontNormalBtn: document.getElementById("fontNormalBtn"),
+      fontLargeBtn: document.getElementById("fontLargeBtn"),
+      copyArticleLinkBtn: document.getElementById("copyArticleLinkBtn"),
+      readerBottomCopyBtn: document.getElementById("readerBottomCopyBtn"),
+      closeReaderBtn: document.getElementById("closeReaderBtn"),
+      readerBottomCloseBtn: document.getElementById("readerBottomCloseBtn"),
+
+      // 新增文章助手元素
+      openAssistantBtn: document.getElementById("openAssistantBtn"),
+      assistantModal: document.getElementById("assistantModal"),
+      closeAssistantBtn: document.getElementById("closeAssistantBtn"),
+      assistantForm: document.getElementById("assistantForm"),
+      formErrorBox: document.getElementById("formErrorBox"),
+      inputTitle: document.getElementById("inputTitle"),
+      inputCategory: document.getElementById("inputCategory"),
+      inputDate: document.getElementById("inputDate"),
+      inputSummary: document.getElementById("inputSummary"),
+      inputTags: document.getElementById("inputTags"),
+      inputContent: document.getElementById("inputContent"),
+      previewArticleBtn: document.getElementById("previewArticleBtn"),
+      generateCodeBtn: document.getElementById("generateCodeBtn"),
+      generatedCodeSection: document.getElementById("generatedCodeSection"),
+      generatedCodeOutput: document.getElementById("generatedCodeOutput"),
+      copyGeneratedAgainBtn: document.getElementById("copyGeneratedAgainBtn"),
+
+      // Toast 元素
+      toastContainer: document.getElementById("toastContainer"),
+      toastMessage: document.getElementById("toastMessage")
+    };
+
+    // ==================== 工具函式 ====================
+
+    /**
+     * 取得目前所有文章（將預覽文章置於最上方）
+     */
+    function getAllArticles() {
+      return [...appState.previewArticles, ...ARTICLES];
+    }
+
+    /**
+     * 取得分類對應的樣式設定
+     */
+    function getCategoryMeta(categoryName) {
+      return CATEGORIES.find((c) => c.name === categoryName) || CATEGORIES[0];
+    }
+
+    /**
+     * HTML 特殊字元跳脫，防止 XSS 與排版錯亂
+     */
+    function escapeHtml(text) {
+      if (typeof text !== "string") return "";
+      return text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
+    /**
+     * 估算中文閱讀時間（以每分鐘約 350 字計算，最少 1 分鐘）
+     */
+    function estimateReadingTime(content) {
+      if (!content) return 1;
+      const cleaned = content.replace(/\s+/g, "");
+      return Math.max(1, Math.ceil(cleaned.length / 350));
+    }
+
+    /**
+     * 取得今天日期的 YYYY-MM-DD 字串（依本地時區）
+     */
+    function getTodayDateString() {
+      const now = new Date();
+      const year = now.getFullYear();
+      const month = String(now.getMonth() + 1).padStart(2, "0");
+      const day = String(now.getDate()).padStart(2, "0");
+      return `${year}-${month}-${day}`;
+    }
+
+    /**
+     * 顯示底部輕量提示訊息 (Toast)
+     */
+    function showToast(message) {
+      try {
+        if (appState.toastTimer) {
+          clearTimeout(appState.toastTimer);
+        }
+        els.toastMessage.textContent = message;
+        els.toastContainer.classList.remove("opacity-0", "translate-y-3", "pointer-events-none");
+        els.toastContainer.classList.add("opacity-100", "translate-y-0");
+
+        appState.toastTimer = setTimeout(() => {
+          els.toastContainer.classList.remove("opacity-100", "translate-y-0");
+          els.toastContainer.classList.add("opacity-0", "translate-y-3", "pointer-events-none");
+        }, 3000);
+      } catch (err) {
+        console.error("顯示提示訊息時發生錯誤：", err);
+      }
+    }
+
+    /**
+     * 複製文字至剪貼簿（使用相容性最高的 document.execCommand('copy')）
+     */
+    function copyTextToClipboard(text) {
+      try {
+        const tempTextarea = document.createElement("textarea");
+        tempTextarea.value = text;
+        tempTextarea.setAttribute("readonly", "");
+        tempTextarea.style.position = "fixed";
+        tempTextarea.style.top = "-9999px";
+        tempTextarea.style.left = "-9999px";
+        document.body.appendChild(tempTextarea);
+
+        tempTextarea.select();
+        tempTextarea.setSelectionRange(0, text.length);
+        const copied = document.execCommand("copy");
+        document.body.removeChild(tempTextarea);
+        return copied;
+      } catch (err) {
+        console.error("複製到剪貼簿失敗：", err);
+        return false;
+      }
+    }
+
+    /**
+     * 內建輕量級 Markdown 轉 HTML 解析器
+     * 支援：## 小標題、### 次標題、- 項目符號、1. 編號清單、**粗體**、> 重點引言、空行分段
+     */
+    function renderSimpleMarkdown(markdownText) {
+      try {
+        if (!markdownText || typeof markdownText !== "string") {
+          return "";
+        }
+
+        // 先統一換行符號
+        const lines = markdownText.replace(/\r\n/g, "\n").split("\n");
+        const htmlBlocks = [];
+
+        let paragraphLines = [];
+        let listItems = [];
+        let listType = null; // 'ul' | 'ol'
+        let quoteLines = [];
+
+        // 行內語法處理（目前支援 **粗體**）
+        const formatInline = (raw) => {
+          const safe = escapeHtml(raw);
+          return safe.replace(/\*\*(.+?)\*\*/g, '<strong class="font-semibold text-stone-900">$1</strong>');
+        };
+
+        const flushParagraph = () => {
+          if (paragraphLines.length > 0) {
+            const joined = paragraphLines.map((line) => formatInline(line)).join("<br>");
+            htmlBlocks.push(`<p class="text-stone-700 leading-relaxed">${joined}</p>`);
+            paragraphLines = [];
+          }
+        };
+
+        const flushList = () => {
+          if (listItems.length > 0 && listType) {
+            if (listType === "ul") {
+              htmlBlocks.push(
+                `<ul class="list-disc pl-6 space-y-2.5 text-stone-700 marker:text-stone-400">${listItems.join("")}</ul>`
+              );
+            } else {
+              htmlBlocks.push(
+                `<ol class="list-decimal pl-6 space-y-2.5 text-stone-700 marker:text-stone-500 marker:font-medium">${listItems.join("")}</ol>`
+              );
+            }
+            listItems = [];
+            listType = null;
+          }
+        };
+
+        const flushQuote = () => {
+          if (quoteLines.length > 0) {
+            const content = quoteLines.map((line) => formatInline(line)).join("<br>");
+            htmlBlocks.push(
+              `<blockquote class="my-6 pl-5 pr-4 py-4 border-l-4 border-stone-800 bg-stone-100/75 rounded-r-2xl text-stone-800 font-medium leading-relaxed">${content}</blockquote>`
+            );
+            quoteLines = [];
+          }
+        };
+
+        const flushAll = () => {
+          flushParagraph();
+          flushList();
+          flushQuote();
+        };
+
+        for (let i = 0; i < lines.length; i++) {
+          const trimmed = lines[i].trim();
+
+          // 空行：結束目前的段落、清單或引言
+          if (trimmed === "") {
+            flushAll();
+            continue;
+          }
+
+          // 次標題 ###
+          if (/^###\s+/.test(trimmed)) {
+            flushAll();
+            const headingText = trimmed.replace(/^###\s+/, "");
+            htmlBlocks.push(
+              `<h3 class="text-lg sm:text-xl font-bold text-stone-900 pt-3 pb-0.5 leading-snug">${formatInline(headingText)}</h3>`
+            );
+            continue;
+          }
+
+          // 小標題 ##
+          if (/^##\s+/.test(trimmed)) {
+            flushAll();
+            const headingText = trimmed.replace(/^##\s+/, "");
+            htmlBlocks.push(
+              `<h2 class="text-xl sm:text-2xl font-bold text-stone-900 pt-5 pb-1 border-b border-stone-200/80 leading-snug">${formatInline(headingText)}</h2>`
+            );
+            continue;
+          }
+
+          // 重點引言 >
+          if (/^>\s?/.test(trimmed)) {
+            flushParagraph();
+            flushList();
+            quoteLines.push(trimmed.replace(/^>\s?/, ""));
+            continue;
+          }
+
+          // 無序清單 - 或 *
+          if (/^[-*]\s+/.test(trimmed)) {
+            flushParagraph();
+            flushQuote();
+            if (listType === "ol") {
+              flushList();
+            }
+            listType = "ul";
+            const itemText = trimmed.replace(/^[-*]\s+/, "");
+            listItems.push(`<li class="leading-relaxed pl-1">${formatInline(itemText)}</li>`);
+            continue;
+          }
+
+          // 有序編號清單 1.
+          if (/^\d+\.\s+/.test(trimmed)) {
+            flushParagraph();
+            flushQuote();
+            if (listType === "ul") {
+              flushList();
+            }
+            listType = "ol";
+            const itemText = trimmed.replace(/^\d+\.\s+/, "");
+            listItems.push(`<li class="leading-relaxed pl-1">${formatInline(itemText)}</li>`);
+            continue;
+          }
+
+          // 一般段落文字
+          flushList();
+          flushQuote();
+          paragraphLines.push(trimmed);
+        }
+
+        flushAll();
+        return htmlBlocks.join("\n");
+      } catch (err) {
+        console.error("解析文章內容失敗：", err);
+        return `<p class="text-stone-700 whitespace-pre-line">${escapeHtml(markdownText)}</p>`;
+      }
+    }
+
+    // ==================== 畫面渲染函式 ====================
+
+    /**
+     * 渲染分類導覽列與各分類文章篇數
+     */
+    function renderCategoryNav() {
+      const allArticles = getAllArticles();
+
+      const navHtml = CATEGORIES.map((cat) => {
+        const count =
+          cat.name === "全部文章"
+            ? allArticles.length
+            : allArticles.filter((a) => a.category === cat.name).length;
+
+        const isActive = appState.activeCategory === cat.name;
+
+        const buttonClasses = isActive
+          ? "bg-stone-900 text-white border-stone-900 shadow-sm"
+          : "bg-white text-stone-700 border-stone-200/90 hover:border-stone-300 hover:bg-stone-50";
+
+        const badgeClasses = isActive
+          ? "bg-white/20 text-white"
+          : "bg-stone-100 text-stone-500";
+
+        const dotHtml =
+          cat.name !== "全部文章"
+            ? `<span class="w-2 h-2 rounded-full ${isActive ? "bg-white/80" : cat.dotClass}"></span>`
+            : "";
+
+        return `
+          <button
+            type="button"
+            data-category="${escapeHtml(cat.name)}"
+            aria-pressed="${isActive}"
+            class="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl border text-sm font-medium transition-all active:scale-[0.98] ${buttonClasses}"
+          >
+            ${dotHtml}
+            <span>${escapeHtml(cat.name)}</span>
+            <span class="px-2 py-0.5 rounded-full text-xs font-semibold ${badgeClasses}">${count}</span>
+          </button>
+        `;
+      }).join("");
+
+      els.categoryNav.innerHTML = navHtml;
+    }
+
+    /**
+     * 根據目前分類與搜尋關鍵字篩選文章
+     */
+    function getFilteredArticles() {
+      const allArticles = getAllArticles();
+      const keyword = appState.searchQuery.trim().toLowerCase();
+
+      return allArticles.filter((article) => {
+        // 1. 分類比對
+        const matchCategory =
+          appState.activeCategory === "全部文章" || article.category === appState.activeCategory;
+        if (!matchCategory) return false;
+
+        // 2. 關鍵字比對（標題、摘要、標籤、內文）
+        if (!keyword) return true;
+        const searchableText = [
+          article.title,
+          article.summary,
+          article.category,
+          (article.tags || []).join(" "),
+          article.content
+        ]
+          .join(" ")
+          .toLowerCase();
+
+        return searchableText.includes(keyword);
+      });
+    }
+
+    /**
+     * 渲染文章卡片列表與狀態提示
+     */
+    function renderArticles() {
+      const filtered = getFilteredArticles();
+      const isFiltered = appState.activeCategory !== "全部文章" || appState.searchQuery.trim() !== "";
+
+      // 更新預覽提示條顯示狀態
+      if (appState.previewArticles.length > 0) {
+        els.previewBanner.classList.remove("hidden");
+      } else {
+        els.previewBanner.classList.add("hidden");
+      }
+
+      // 更新結果摘要文字
+      if (appState.searchQuery.trim()) {
+        els.resultSummary.textContent = `在「${appState.activeCategory}」中找到 ${filtered.length} 篇與「${appState.searchQuery.trim()}」相關的文章`;
+      } else {
+        els.resultSummary.textContent = `目前顯示「${appState.activeCategory}」，共 ${filtered.length} 篇文章`;
+      }
+
+      if (isFiltered) {
+        els.resetFilterBtn.classList.remove("hidden");
+      } else {
+        els.resetFilterBtn.classList.add("hidden");
+      }
+
+      // 空狀態處理
+      if (filtered.length === 0) {
+        els.articleGrid.innerHTML = "";
+        els.articleGrid.classList.add("hidden");
+        els.emptyState.classList.remove("hidden");
+        return;
+      }
+
+      els.emptyState.classList.add("hidden");
+      els.articleGrid.classList.remove("hidden");
+
+      // 產生文章卡片 HTML
+      els.articleGrid.innerHTML = filtered
+        .map((article) => {
+          const catMeta = getCategoryMeta(article.category);
+          const readMinutes = estimateReadingTime(article.content);
+          const tagsHtml = (article.tags || [])
+            .slice(0, 4)
+            .map(
+              (tag) => `
+                <button
+                  type="button"
+                  data-tag-search="${escapeHtml(tag)}"
+                  class="px-2.5 py-1 rounded-lg bg-stone-100/90 text-stone-600 hover:bg-stone-200/80 hover:text-stone-900 text-xs transition-colors"
+                >#${escapeHtml(tag)}</button>
+              `
+            )
+            .join("");
+
+          const previewBadge = article.isPreview
+            ? `<span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-800 border border-amber-200">預覽中</span>`
+            : "";
+
+          return `
+            <article
+              data-article-id="${escapeHtml(String(article.id))}"
+              tabindex="0"
+              role="button"
+              aria-label="閱讀文章：${escapeHtml(article.title)}"
+              class="group cursor-pointer bg-white rounded-3xl border border-stone-200/85 p-6 sm:p-7 shadow-sm hover:shadow-md hover:border-stone-300 hover:-translate-y-0.5 transition-all duration-200 flex flex-col justify-between focus:outline-none focus:ring-2 focus:ring-stone-800/20"
+            >
+              <div>
+                <!-- 頂部資訊列：分類、預覽標記、日期與閱讀時間 -->
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                  <div class="flex items-center gap-2">
+                    <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium border ${catMeta.badgeClass}">
+                      ${escapeHtml(article.category)}
+                    </span>
+                    ${previewBadge}
+                  </div>
+                  <div class="flex items-center gap-2 text-xs text-stone-400">
+                    <time datetime="${escapeHtml(article.date)}">${escapeHtml(article.date)}</time>
+                    <span aria-hidden="true">•</span>
+                    <span>約 ${readMinutes} 分鐘閱讀</span>
+                  </div>
+                </div>
+
+                <!-- 標題 -->
+                <h2 class="text-xl font-bold text-stone-900 group-hover:text-stone-600 leading-snug tracking-tight mb-3 transition-colors">
+                  ${escapeHtml(article.title)}
+                </h2>
+
+                <!-- 摘要 -->
+                <p class="text-stone-600 text-sm sm:text-[15px] leading-relaxed line-clamp-3 mb-5">
+                  ${escapeHtml(article.summary)}
+                </p>
+              </div>
+
+              <!-- 底部標籤與閱讀提示 -->
+              <div class="pt-4 border-t border-stone-100 flex flex-wrap items-center justify-between gap-3">
+                <div class="flex flex-wrap items-center gap-1.5">
+                  ${tagsHtml}
+                </div>
+                <span class="inline-flex items-center gap-1 text-xs font-semibold text-stone-500 group-hover:text-stone-900 transition-colors ml-auto">
+                  <span>閱讀全文</span>
+                  <svg class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                  </svg>
+                </span>
+              </div>
+            </article>
+          `;
+        })
+        .join("");
+    }
+
+    // ==================== 閱讀視窗 (Modal) 控制 ====================
+
+    /**
+     * 套用閱讀器字體大小設定
+     */
+    function applyReaderFontSize() {
+      if (appState.fontSize === "large") {
+        els.readerContent.className = "text-stone-700 text-lg sm:text-[19px] leading-9 space-y-6";
+        els.fontLargeBtn.className = "px-2.5 py-1 rounded-lg text-xs font-medium transition-all bg-white text-stone-900 shadow-sm";
+        els.fontNormalBtn.className = "px-2.5 py-1 rounded-lg text-xs font-medium transition-all text-stone-500 hover:text-stone-800";
+      } else {
+        els.readerContent.className = "text-stone-700 text-base sm:text-[17px] leading-8 space-y-5";
+        els.fontNormalBtn.className = "px-2.5 py-1 rounded-lg text-xs font-medium transition-all bg-white text-stone-900 shadow-sm";
+        els.fontLargeBtn.className = "px-2.5 py-1 rounded-lg text-xs font-medium transition-all text-stone-500 hover:text-stone-800";
+      }
+    }
+
+    /**
+     * 開啟單篇文章閱讀視窗，並同步更新 URL Hash
+     */
+    function openArticleReader(articleId, updateHash = true) {
+      const article = getAllArticles().find((a) => String(a.id) === String(articleId));
+      if (!article) return;
+
+      appState.currentArticleId = article.id;
+      const catMeta = getCategoryMeta(article.category);
+      const readMinutes = estimateReadingTime(article.content);
+
+      // 填入文章資料
+      els.readerCategoryBadge.textContent = article.category;
+      els.readerCategoryBadge.className = `inline-flex items-center px-3 py-1 rounded-full text-xs font-medium border shrink-0 ${catMeta.badgeClass}`;
+
+      if (article.isPreview) {
+        els.readerPreviewTag.classList.remove("hidden");
+      } else {
+        els.readerPreviewTag.classList.add("hidden");
+      }
+
+      els.readerDate.textContent = `發布於 ${article.date}`;
+      els.readerReadTime.textContent = `預估閱讀時間約 ${readMinutes} 分鐘`;
+      els.readerTitle.textContent = article.title;
+      els.readerSummary.textContent = article.summary;
+
+      els.readerTags.innerHTML = (article.tags || [])
+        .map(
+          (tag) => `
+            <button
+              type="button"
+              data-reader-tag="${escapeHtml(tag)}"
+              class="px-3 py-1 rounded-xl bg-stone-100 text-stone-600 hover:bg-stone-200 hover:text-stone-900 text-xs font-medium transition-colors"
+            >#${escapeHtml(tag)}</button>
+          `
+        )
+        .join("");
+
+      els.readerContent.innerHTML = renderSimpleMarkdown(article.content);
+      applyReaderFontSize();
+
+      // 顯示視窗並捲動至最上方
+      els.readerModal.classList.remove("hidden");
+      els.readerScrollArea.scrollTop = 0;
+      document.body.classList.add("overflow-hidden");
+
+      // 更新網址 Hash，方便複製連結直接分享（非預覽文章或皆可帶入 Hash）
+      if (updateHash) {
+        const targetHash = `#article-${article.id}`;
+        if (window.location.hash !== targetHash) {
+          try {
+            history.pushState(null, "", targetHash);
+          } catch (err) {
+            window.location.hash = targetHash;
+          }
+        }
+      }
+    }
+
+    /**
+     * 關閉文章閱讀視窗並清除 URL Hash
+     */
+    function closeArticleReader(clearHash = true) {
+      if (els.readerModal.classList.contains("hidden")) return;
+
+      els.readerModal.classList.add("hidden");
+      appState.currentArticleId = null;
+
+      // 若助手視窗也沒開啟，恢復主畫面捲動
+      if (els.assistantModal.classList.contains("hidden")) {
+        document.body.classList.remove("overflow-hidden");
+      }
+
+      if (clearHash && window.location.hash.startsWith("#article-")) {
+        try {
+          history.replaceState(null, "", window.location.pathname + window.location.search);
+        } catch (err) {
+          window.location.hash = "";
+        }
+      }
+    }
+
+    /**
+     * 複製目前文章的專屬分享網址
+     */
+    function copyCurrentArticleUrl() {
+      if (appState.currentArticleId === null) return;
+      const baseUrl = window.location.href.split("#")[0];
+      const shareUrl = `${baseUrl}#article-${appState.currentArticleId}`;
+      const ok = copyTextToClipboard(shareUrl);
+      if (ok) {
+        showToast("已複製文章專屬連結！");
+      } else {
+        showToast("複製失敗，請直接複製瀏覽器網址列。");
+      }
+    }
+
+    /**
+     * 檢查網址 Hash（例如 #article-1）並自動開啟對應文章
+     */
+    function handleHashRoute() {
+      const hash = window.location.hash;
+      const match = hash.match(/^#article-(.+)$/);
+      if (match && match[1]) {
+        const targetId = match[1];
+        const exists = getAllArticles().some((a) => String(a.id) === String(targetId));
+        if (exists) {
+          openArticleReader(targetId, false);
+          return;
+        }
+      }
+      closeArticleReader(false);
+    }
+
+    // ==================== 新增文章助手邏輯 ====================
+
+    /**
+     * 開啟「新增文章助手」視窗
+     */
+    function openAssistantModal() {
+      // 預設填入今天日期（若尚未填寫）
+      if (!els.inputDate.value) {
+        els.inputDate.value = getTodayDateString();
+      }
+      els.formErrorBox.classList.add("hidden");
+      els.assistantModal.classList.remove("hidden");
+      document.body.classList.add("overflow-hidden");
+    }
+
+    /**
+     * 關閉「新增文章助手」視窗
+     */
+    function closeAssistantModal() {
+      els.assistantModal.classList.add("hidden");
+      if (els.readerModal.classList.contains("hidden")) {
+        document.body.classList.remove("overflow-hidden");
+      }
+    }
+
+    /**
+     * 取得並驗證表單資料
+     */
+    function collectAndValidateForm() {
+      const title = els.inputTitle.value.trim();
+      const category = els.inputCategory.value;
+      const date = els.inputDate.value.trim() || getTodayDateString();
+      const summary = els.inputSummary.value.trim();
+      const rawTags = els.inputTags.value.trim();
+      const content = els.inputContent.value.trim();
+
+      const missingFields = [];
+      if (!title) missingFields.push("文章標題");
+      if (!summary) missingFields.push("簡短摘要");
+      if (!content) missingFields.push("文章內容");
+
+      if (missingFields.length > 0) {
+        els.formErrorBox.textContent = `請填寫必填欄位：${missingFields.join("、")}。`;
+        els.formErrorBox.classList.remove("hidden");
+        els.formErrorBox.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        return null;
+      }
+
+      els.formErrorBox.classList.add("hidden");
+
+      // 支援全形與半形逗號、頓號分隔標籤
+      const tags = rawTags
+        ? rawTags
+            .split(/[,，、]+/)
+            .map((t) => t.trim())
+            .filter(Boolean)
+        : [];
+
+      // 自動計算下一個可用的文章 ID
+      const numericIds = getAllArticles()
+        .map((a) => Number(a.id))
+        .filter((n) => !Number.isNaN(n));
+      const nextId = numericIds.length > 0 ? Math.max(...numericIds) + 1 : 1;
+
+      return { id: nextId, title, category, date, summary, tags, content };
+    }
+
+    /**
+     * 將文章物件格式化為安全跳脫、可直接貼上 GitHub index.html 的 JS 程式碼
+     */
+    function formatArticleAsJsCode(articleObj) {
+      // 反引號模板字串內需跳脫反斜線、反引號與 ${ 語法
+      const escapedContent = articleObj.content
+        .replace(/\\/g, "\\\\")
+        .replace(/`/g, "\\`")
+        .replace(/\$\{/g, "\\${");
+
+      const tagsJson = JSON.stringify(articleObj.tags);
+
+      return `      {
+        id: ${articleObj.id},
+        title: ${JSON.stringify(articleObj.title)},
+        category: ${JSON.stringify(articleObj.category)},
+        date: ${JSON.stringify(articleObj.date)},
+        summary: ${JSON.stringify(articleObj.summary)},
+        tags: ${tagsJson},
+        content: \`${escapedContent}\`
+      },`;
+    }
+
+    /**
+     * 即時預覽效果：將文章暫時加到畫面最上方，並開啟閱讀預覽
+     */
+    function handlePreviewArticle() {
+      const formData = collectAndValidateForm();
+      if (!formData) return;
+
+      const previewItem = {
+        ...formData,
+        isPreview: true
+      };
+
+      // 加到預覽陣列最上方
+      appState.previewArticles.unshift(previewItem);
+
+      // 重設分類與搜尋，確保使用者立即在最上方看到新卡片
+      appState.activeCategory = "全部文章";
+      appState.searchQuery = "";
+      els.searchInput.value = "";
+      els.clearSearchBtn.classList.add("hidden");
+
+      renderCategoryNav();
+      renderArticles();
+      closeAssistantModal();
+
+      // 捲動回頂部並提示
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      showToast("已加入畫面最上方預覽！點擊卡片即可檢視排版效果");
+    }
+
+    /**
+     * 產生並自動複製 GitHub 程式碼
+     */
+    function handleGenerateCode() {
+      const formData = collectAndValidateForm();
+      if (!formData) return;
+
+      const codeString = formatArticleAsJsCode(formData);
+      els.generatedCodeOutput.textContent = codeString;
+      els.generatedCodeSection.classList.remove("hidden");
+      els.generatedCodeSection.scrollIntoView({ behavior: "smooth", block: "nearest" });
+
+      const copied = copyTextToClipboard(codeString);
+      if (copied) {
+        showToast("已產生並複製程式碼！貼到 index.html 的 ARTICLES 最上方即可");
+      } else {
+        showToast("程式碼已產生，請點擊「再次複製」或手動選取複製");
+      }
+    }
+
+    // ==================== 事件監聽綁定 ====================
+
+    function bindEvents() {
+      // 點擊品牌 Logo 回到全部文章頂部
+      els.brandHomeLink.addEventListener("click", (e) => {
+        e.preventDefault();
+        appState.activeCategory = "全部文章";
+        appState.searchQuery = "";
+        els.searchInput.value = "";
+        els.clearSearchBtn.classList.add("hidden");
+        closeArticleReader(true);
+        renderCategoryNav();
+        renderArticles();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+
+      // 即時搜尋輸入
+      els.searchInput.addEventListener("input", (e) => {
+        appState.searchQuery = e.target.value;
+        if (appState.searchQuery.trim() !== "") {
+          els.clearSearchBtn.classList.remove("hidden");
+        } else {
+          els.clearSearchBtn.classList.add("hidden");
+        }
+        renderArticles();
+      });
+
+      // 清除搜尋按鈕
+      els.clearSearchBtn.addEventListener("click", () => {
+        appState.searchQuery = "";
+        els.searchInput.value = "";
+        els.clearSearchBtn.classList.add("hidden");
+        els.searchInput.focus();
+        renderArticles();
+      });
+
+      // 分類按鈕點擊（事件委派）
+      els.categoryNav.addEventListener("click", (e) => {
+        const btn = e.target.closest("button[data-category]");
+        if (!btn) return;
+        appState.activeCategory = btn.getAttribute("data-category");
+        renderCategoryNav();
+        renderArticles();
+      });
+
+      // 重設篩選按鈕（兩處共用邏輯）
+      const resetAllFilters = () => {
+        appState.activeCategory = "全部文章";
+        appState.searchQuery = "";
+        els.searchInput.value = "";
+        els.clearSearchBtn.classList.add("hidden");
+        renderCategoryNav();
+        renderArticles();
+      };
+      els.resetFilterBtn.addEventListener("click", resetAllFilters);
+      els.emptyResetBtn.addEventListener("click", resetAllFilters);
+
+      // 清除暫時預覽文章
+      els.clearPreviewBtn.addEventListener("click", () => {
+        appState.previewArticles = [];
+        renderCategoryNav();
+        renderArticles();
+        showToast("已清除暫時預覽的文章");
+      });
+
+      // 文章卡片點擊與標籤快搜（事件委派）
+      els.articleGrid.addEventListener("click", (e) => {
+        // 若點到卡片上的標籤按鈕，則進行該標籤搜尋
+        const tagBtn = e.target.closest("button[data-tag-search]");
+        if (tagBtn) {
+          e.stopPropagation();
+          const tag = tagBtn.getAttribute("data-tag-search");
+          appState.searchQuery = tag;
+          els.searchInput.value = tag;
+          els.clearSearchBtn.classList.remove("hidden");
+          renderArticles();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+          return;
+        }
+
+        // 點擊卡片開啟閱讀視窗
+        const card = e.target.closest("article[data-article-id]");
+        if (card) {
+          const id = card.getAttribute("data-article-id");
+          openArticleReader(id, true);
+        }
+      });
+
+      // 支援鍵盤 Enter / 空白鍵開啟聚焦的文章卡片
+      els.articleGrid.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          const card = e.target.closest("article[data-article-id]");
+          if (card && !e.target.closest("button")) {
+            e.preventDefault();
+            openArticleReader(card.getAttribute("data-article-id"), true);
+          }
+        }
+      });
+
+      // 閱讀視窗內標籤點擊快搜
+      els.readerTags.addEventListener("click", (e) => {
+        const tagBtn = e.target.closest("button[data-reader-tag]");
+        if (!tagBtn) return;
+        const tag = tagBtn.getAttribute("data-reader-tag");
+        closeArticleReader(true);
+        appState.activeCategory = "全部文章";
+        appState.searchQuery = tag;
+        els.searchInput.value = tag;
+        els.clearSearchBtn.classList.remove("hidden");
+        renderCategoryNav();
+        renderArticles();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+
+      // 閱讀視窗字體大小切換
+      els.fontNormalBtn.addEventListener("click", () => {
+        appState.fontSize = "normal";
+        applyReaderFontSize();
+      });
+      els.fontLargeBtn.addEventListener("click", () => {
+        appState.fontSize = "large";
+        applyReaderFontSize();
+      });
+
+      // 複製文章連結
+      els.copyArticleLinkBtn.addEventListener("click", copyCurrentArticleUrl);
+      els.readerBottomCopyBtn.addEventListener("click", copyCurrentArticleUrl);
+
+      // 關閉閱讀視窗
+      els.closeReaderBtn.addEventListener("click", () => closeArticleReader(true));
+      els.readerBottomCloseBtn.addEventListener("click", () => closeArticleReader(true));
+      els.readerModal.addEventListener("click", (e) => {
+        if (e.target === els.readerModal) {
+          closeArticleReader(true);
+        }
+      });
+
+      // 新增文章助手開關與按鈕
+      els.openAssistantBtn.addEventListener("click", openAssistantModal);
+      els.closeAssistantBtn.addEventListener("click", closeAssistantModal);
+      els.assistantModal.addEventListener("click", (e) => {
+        if (e.target === els.assistantModal) {
+          closeAssistantModal();
+        }
+      });
+      els.previewArticleBtn.addEventListener("click", handlePreviewArticle);
+      els.generateCodeBtn.addEventListener("click", handleGenerateCode);
+      els.copyGeneratedAgainBtn.addEventListener("click", () => {
+        const ok = copyTextToClipboard(els.generatedCodeOutput.textContent);
+        showToast(ok ? "已再次複製文章程式碼！" : "複製失敗，請手動選取複製");
+      });
+
+      // 全域鍵盤 Esc 關閉開啟中的視窗
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          if (!els.assistantModal.classList.contains("hidden")) {
+            closeAssistantModal();
+          } else if (!els.readerModal.classList.contains("hidden")) {
+            closeArticleReader(true);
+          }
+        }
+      });
+
+      // 監聽網址 Hash 變化（支援瀏覽器上一頁 / 下一頁）
+      window.addEventListener("hashchange", handleHashRoute);
+    }
+
+    // ==================== 初始化應用程式 ====================
+    function init() {
+      try {
+        els.footerYear.textContent = String(new Date().getFullYear());
+        els.inputDate.value = getTodayDateString();
+        bindEvents();
+        renderCategoryNav();
+        renderArticles();
+        handleHashRoute();
+      } catch (err) {
+        console.error("初始化頁面時發生錯誤：", err);
+      }
+    }
+
+    // 啟動初始化
+    init();
+  </script>
+</body>
+</html>
